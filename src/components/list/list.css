@@ -1,0 +1,29 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  background: rgba(8,12,26,0.65);
+  backdrop-filter: blur(20px);
+  flex-shrink: 0;
+
+  /* Desktop width */
+  width: 300px;
+  min-width: 260px;
+  max-width: 320px;
+}
+
+/* Tablet: narrower sidebar */
+@media (max-width: 1024px) {
+  .list {
+    width: 260px;
+    min-width: 220px;
+  }
+}
+
+/* Mobile: full width */
+@media (max-width: 768px) {
+  .list {
+    width: 100%;
+    max-width: 100%;
+    min-width: unset;
+  }
+}
