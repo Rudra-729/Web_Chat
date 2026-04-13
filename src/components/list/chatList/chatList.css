@@ -1,0 +1,282 @@
+.chatList {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.chatList .listHeader {
+  padding: 14px 16px 10px;
+  flex-shrink: 0;
+}
+
+.chatList .listHeader h3 {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.chatList .search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.chatList .search .searchBar {
+  flex: 1;
+  background: var(--bg-glass);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: var(--radius-sm);
+  padding: 9px 12px;
+  border: 1px solid var(--border-color);
+  transition: all 0.25s;
+  min-width: 0;
+}
+
+.chatList .search .searchBar:focus-within {
+  background: rgba(99,102,241,0.06);
+  border-color: rgba(99,102,241,0.4);
+  box-shadow: 0 0 0 2px rgba(99,102,241,0.08);
+}
+
+.chatList .search .searchBar .searchIcon {
+  font-size: 13px;
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+
+.chatList .search .searchBar input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-primary);
+  flex: 1;
+  font-size: 13px;
+  font-family: 'Inter', sans-serif;
+  min-width: 0;
+}
+
+.chatList .search .searchBar input::placeholder { color: var(--text-muted); }
+
+.chatList .search .addBtn {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  background: var(--accent-gradient);
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s;
+  box-shadow: 0 3px 10px rgba(99,102,241,0.35);
+  font-size: 20px;
+  color: white;
+  line-height: 1;
+}
+
+.chatList .search .addBtn:hover {
+  box-shadow: 0 5px 18px rgba(99,102,241,0.55);
+  transform: scale(1.06);
+}
+
+/* ── Chats list ── */
+.chatList .chatsContainer {
+  flex: 1;
+  overflow-y: auto;
+  padding: 6px 0;
+}
+
+.chatList .chatsContainer .emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  text-align: center;
+  gap: 8px;
+}
+
+.chatList .chatsContainer .emptyState .emptyIcon {
+  font-size: 36px;
+  opacity: 0.4;
+}
+
+.chatList .chatsContainer .emptyState p {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  white-space: pre-line;
+}
+
+.chatList .item {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 11px 16px;
+  cursor: pointer;
+  transition: all 0.18s;
+  position: relative;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.chatList .item:last-child { border-bottom: none; }
+
+.chatList .item:hover { background: var(--bg-glass-hover); }
+
+.chatList .item.active { background: var(--bg-glass-active); }
+
+.chatList .item.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 55%;
+  background: var(--accent-gradient);
+  border-radius: 0 3px 3px 0;
+}
+
+.chatList .item .avatarWrapper {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.chatList .item .avatarWrapper img {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  border: 2px solid transparent;
+  transition: all 0.2s;
+}
+
+.chatList .item.active .avatarWrapper img,
+.chatList .item:hover .avatarWrapper img {
+  border-color: rgba(99,102,241,0.4);
+}
+
+.chatList .item .avatarWrapper .onlineDot {
+  width: 10px;
+  height: 10px;
+  background: var(--online-color);
+  border-radius: 50%;
+  position: absolute;
+  bottom: 1px;
+  right: 1px;
+  border: 2px solid #0a0f1e;
+}
+
+.chatList .item .texts {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.chatList .item .texts .nameRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.chatList .item .texts .nameRow span {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chatList .item .texts .nameRow .time {
+  font-size: 10px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.chatList .item .texts .lastMsg {
+  font-size: 12px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.4;
+}
+
+.chatList .item.unread .texts .lastMsg {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.chatList .item .unreadBadge {
+  width: 17px;
+  height: 17px;
+  background: var(--accent-gradient);
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 700;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(99,102,241,0.4);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .chatList .item .avatarWrapper img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .chatList .item { padding: 13px 16px; }
+}
+
+/* ── Bot / AI specific styles ── */
+.chatList .item.botItem {
+  background: linear-gradient(90deg, rgba(99,102,241,0.05) 0%, transparent 100%);
+}
+
+.chatList .item.botItem:hover {
+  background: linear-gradient(90deg, rgba(99,102,241,0.1) 0%, transparent 100%);
+}
+
+.chatList .item .avatarWrapper .botBadge {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 18px;
+  height: 18px;
+  background: #6366f1;
+  border-radius: 50%;
+  border: 2px solid #0a0f1e;
+  font-size: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chatList .item .texts .nameRow span .aiBadge {
+  font-size: 9px;
+  font-weight: 700;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 0.5px;
+  vertical-align: middle;
+  margin-left: 1px;
+}
