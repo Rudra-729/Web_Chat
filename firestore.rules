@@ -1,0 +1,31 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ── Users collection ──────────────────────────────────────────────────────
+    match /users/{userId} {
+      // Any signed-in user can read any user profile (needed for chat list lookups)
+      allow read: if request.auth != null;
+
+      // Own profile OR the shared bot account (any auth user can create/update it)
+      allow write: if request.auth != null &&
+        (request.auth.uid == userId || userId == "nexchat-ai-assistant-v1");
+    }
+
+    // ── Chats collection ──────────────────────────────────────────────────────
+    match /chats/{chatId} {
+      // Any signed-in user can read and write chats (message creation & reading)
+      allow read, write: if request.auth != null;
+    }
+
+    // ── UserChats collection ──────────────────────────────────────────────────
+    match /userchats/{userId} {
+      // Any signed-in user can read/write any userchats document.
+      // This is required for:
+      //   • Adding a new contact (writing to the other user's doc)
+      //   • Bot setup (writing to the bot's doc + current user's doc)
+      //   • Marking messages as seen
+      allow read, write: if request.auth != null;
+    }
+  }
+}
