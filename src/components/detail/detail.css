@@ -1,0 +1,360 @@
+.detail {
+  flex: 1;
+  min-width: 240px;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  background: rgba(8,12,28,0.4);
+}
+
+/* Mobile back (shown only on mobile) */
+.detailMobileBack {
+  display: none;
+  padding: 12px 16px 0;
+}
+
+.detailMobileBack button {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  transition: all 0.2s;
+  font-family: 'Inter', sans-serif;
+}
+
+.detailMobileBack button:hover {
+  background: var(--bg-glass-hover);
+  color: var(--text-primary);
+}
+
+@media (max-width: 768px) {
+  .detail {
+    max-width: 100%;
+    min-width: unset;
+  }
+  .detailMobileBack { display: block; }
+}
+
+/* Empty detail state */
+.detail.emptyDetail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px;
+  text-align: center;
+}
+
+.detail.emptyDetail .emptyDetailIcon {
+  font-size: 40px;
+  opacity: 0.3;
+}
+
+.detail.emptyDetail p {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* ── Profile section ── */
+.detail .profileSection {
+  padding: 24px 16px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid var(--border-color);
+  background: rgba(10,15,30,0.3);
+  flex-shrink: 0;
+}
+
+.detail .profileSection .avatarLarge {
+  position: relative;
+}
+
+.detail .profileSection .avatarLarge img {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(99,102,241,0.4);
+  display: block;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+}
+
+.detail .profileSection .avatarLarge .onlineDot {
+  width: 13px;
+  height: 13px;
+  background: var(--online-color);
+  border-radius: 50%;
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  border: 3px solid #0a0f1e;
+}
+
+.detail .profileSection h2 {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-align: center;
+  letter-spacing: -0.2px;
+}
+
+.detail .profileSection .statusBadge {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: var(--online-color);
+  font-weight: 500;
+  background: rgba(34,197,94,0.1);
+  border: 1px solid rgba(34,197,94,0.2);
+  border-radius: 999px;
+  padding: 3px 10px;
+}
+
+/* Quick action buttons */
+.detail .profileSection .quickActions {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.detail .profileSection .quickActions .actionBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 10px 12px;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.25s;
+  font-size: 18px;
+  min-width: 58px;
+}
+
+.detail .profileSection .quickActions .actionBtn:hover {
+  background: var(--bg-glass-hover);
+  border-color: rgba(255,255,255,0.15);
+  transform: translateY(-2px);
+}
+
+.detail .profileSection .quickActions .actionBtn.mutedActive {
+  background: rgba(239,68,68,0.1);
+  border-color: rgba(239,68,68,0.25);
+}
+
+.detail .profileSection .quickActions .actionBtn span {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: var(--text-muted);
+  font-family: 'Inter', sans-serif;
+}
+
+/* ── Info body ── */
+.detail .infoBody {
+  flex: 1;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  overflow-y: auto;
+}
+
+.detail .infoSection {
+  background: var(--bg-glass);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.detail .infoSection .sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+  user-select: none;
+}
+
+.detail .infoSection .sectionHeader:hover {
+  background: var(--bg-glass-hover);
+}
+
+.detail .infoSection .sectionHeader .sectionTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+}
+
+.detail .infoSection .sectionHeader .sectionTitle .sectionIcon { font-size: 14px; }
+
+.detail .infoSection .sectionHeader .chevron {
+  font-size: 12px;
+  color: var(--text-muted);
+  transition: transform 0.3s;
+}
+
+.detail .infoSection .sectionHeader .chevron.open { transform: rotate(180deg); }
+
+.detail .infoSection .sectionContent {
+  padding: 8px 14px 14px;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: fadeIn 0.2s ease-out;
+}
+
+/* Photo grid */
+.detail .infoSection .photoGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+}
+
+.detail .infoSection .photoGrid .photoItem {
+  aspect-ratio: 1;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+.detail .infoSection .photoGrid .photoItem img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s;
+}
+
+.detail .infoSection .photoGrid .photoItem:hover img { transform: scale(1.08); }
+.detail .infoSection .photoGrid .photoItem:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
+
+.detail .infoSection .morePhotos {
+  font-size: 12px;
+  color: var(--accent-secondary);
+  text-align: center;
+  padding: 4px;
+}
+
+.detail .infoSection .noPhotos {
+  font-size: 13px;
+  color: var(--text-muted);
+  text-align: center;
+  padding: 8px 0;
+}
+
+/* Settings rows */
+.detail .infoSection .settingRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--text-secondary);
+  padding: 4px 0;
+}
+
+.detail .infoSection .settingRow .miniToggle {
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-glass);
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.2s;
+}
+
+.detail .infoSection .settingRow .miniToggle.on {
+  background: rgba(34,197,94,0.15);
+  border-color: rgba(34,197,94,0.3);
+  color: var(--online-color);
+}
+
+.detail .infoSection .settingRow .settingValue {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* ── Action buttons ── */
+.detail .actionButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px;
+  flex-shrink: 0;
+}
+
+.detail .actionButtons .blockBtn {
+  padding: 12px 16px;
+  background: rgba(239,68,68,0.1);
+  color: var(--danger-color);
+  border: 1px solid rgba(239,68,68,0.22);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 13px;
+  transition: all 0.25s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: 'Inter', sans-serif;
+}
+
+.detail .actionButtons .blockBtn:hover {
+  background: rgba(239,68,68,0.18);
+  border-color: rgba(239,68,68,0.45);
+}
+
+.detail .actionButtons .logoutBtn {
+  padding: 12px 16px;
+  background: var(--bg-glass);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 13px;
+  transition: all 0.25s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: 'Inter', sans-serif;
+}
+
+.detail .actionButtons .logoutBtn:hover {
+  background: var(--bg-glass-hover);
+  color: var(--text-primary);
+}
+
+/* Tablet: show detail as overlay */
+@media (max-width: 1024px) {
+  .detail {
+    max-width: 280px;
+  }
+}
