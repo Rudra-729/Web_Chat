@@ -53,6 +53,20 @@ const Chat = () => {
     endRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [chat?.messages]);
 
+  // Real-time receiver block tracking
+  useEffect(() => {
+    if (!user?.id || user.id === BOT_ID) return;
+    const unSub = onSnapshot(doc(db, "users", user.id), (res) => {
+      const freshUser = res.data();
+      if (!freshUser) return;
+      const amIBlocked = freshUser.blocked.includes(currentUser.id);
+      if (amIBlocked !== isCurrentUserBlocked) {
+        useChatStore.setState({ isCurrentUserBlocked: amIBlocked });
+      }
+    });
+    return () => unSub();
+  }, [user?.id, currentUser.id, isCurrentUserBlocked]);
+
   useEffect(() => {
     if (!chatId) return;
     const unSub = onSnapshot(doc(db, "chats", chatId), (res) =>
@@ -316,7 +330,7 @@ const Chat = () => {
 
         <div className="user">
           <div className="avatarWrapper">
-            <img src={user?.avatar || "./avatar.png"} alt="" />
+            <img src={isCurrentUserBlocked ? "./avatar.png" : (user?.avatar || "./avatar.png")} alt="" />
             <div className="onlineDot" />
           </div>
           <div className="texts">
@@ -461,7 +475,7 @@ const Chat = () => {
           return (
             <div className={`message ${isOwn ? "own" : ""}`} key={idx}>
               {!isOwn && (
-                <img className="avatarMsg" src={user?.avatar || "./avatar.png"} alt="" />
+                <img className="avatarMsg" src={isCurrentUserBlocked ? "./avatar.png" : (user?.avatar || "./avatar.png")} alt="" />
               )}
               <div className="messageContent">
                 <div className="texts">

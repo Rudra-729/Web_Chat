@@ -23,7 +23,12 @@ const Detail = () => {
   const handleBlock = async () => {
     if (!user) return;
     const userDocRef = doc(db, "users", currentUser.id);
+    const newBlocked = isReceiverBlocked
+      ? (currentUser.blocked || []).filter((id) => id !== user.id)
+      : [...(currentUser.blocked || []), user.id];
+      
     try {
+      useUserStore.setState({ currentUser: { ...currentUser, blocked: newBlocked } });
       await updateDoc(userDocRef, {
         blocked: isReceiverBlocked ? arrayRemove(user.id) : arrayUnion(user.id),
       });
@@ -69,7 +74,7 @@ const Detail = () => {
       {/* Profile section */}
       <div className="profileSection">
         <div className="avatarLarge">
-          <img src={user?.avatar || "./avatar.png"} alt="" />
+          <img src={isCurrentUserBlocked ? "./avatar.png" : (user?.avatar || "./avatar.png")} alt="" />
           <div className="onlineDot" />
         </div>
         <h2>{user?.username}</h2>
