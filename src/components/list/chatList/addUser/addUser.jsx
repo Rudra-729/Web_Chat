@@ -12,6 +12,7 @@ import {
   where,
 } from "firebase/firestore";
 import { useState } from "react";
+import { createPortal } from "react-dom";
 import { useUserStore } from "../../../../lib/userStore";
 import { toast } from "react-toastify";
 
@@ -126,7 +127,7 @@ const AddUser = ({ onClose }) => {
     }
   };
 
-  return (
+  return createPortal(
     <>
       <div className="addUserOverlay" onClick={onClose} />
       <div className="addUser">
@@ -166,7 +167,8 @@ const AddUser = ({ onClose }) => {
           </div>
         )}
       </div>
-    </>
+    </>,
+    document.body
   );
 };
 

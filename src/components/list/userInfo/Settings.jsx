@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { createPortal } from "react-dom";
 import "./Settings.css";
 import { useUserStore } from "../../../lib/userStore";
 import { auth } from "../../../lib/firebase";
@@ -50,7 +51,7 @@ const Settings = ({ onClose }) => {
     Appearance: "🎨",
   };
 
-  return (
+  return createPortal(
     <>
       <div className="settingsOverlay" onClick={onClose} />
       <div className="settingsModal">
@@ -446,7 +447,8 @@ const Settings = ({ onClose }) => {
           <button className="saveBtn" onClick={handleSave}>Save Changes</button>
         </div>
       </div>
-    </>
+    </>,
+    document.body
   );
 };
 
