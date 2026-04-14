@@ -13,7 +13,7 @@ export const useChatStore = create((set) => ({
   changeChat: (chatId, user) => {
     const currentUser = useUserStore.getState().currentUser;
 
-    if (user.blocked.includes(currentUser.id)) {
+    if ((user.blocked || []).includes(currentUser.id)) {
       return set({
         chatId,
         user,
@@ -22,7 +22,7 @@ export const useChatStore = create((set) => ({
         isMuted: false,
         mobilePanel: "chat",
       });
-    } else if (currentUser.blocked.includes(user.id)) {
+    } else if ((currentUser.blocked || []).includes(user.id)) {
       return set({
         chatId,
         user,

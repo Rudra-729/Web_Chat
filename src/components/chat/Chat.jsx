@@ -59,7 +59,7 @@ const Chat = () => {
     const unSub = onSnapshot(doc(db, "users", user.id), (res) => {
       const freshUser = res.data();
       if (!freshUser) return;
-      const amIBlocked = freshUser.blocked.includes(currentUser.id);
+      const amIBlocked = (freshUser.blocked || []).includes(currentUser.id);
       if (amIBlocked !== isCurrentUserBlocked) {
         useChatStore.setState({ isCurrentUserBlocked: amIBlocked });
       }
@@ -125,6 +125,7 @@ const Chat = () => {
   const handleSend = useCallback(async () => {
     if (text.trim() === "" && !img.file) return;
     if (sending) return;
+    if (isCurrentUserBlocked || isReceiverBlocked) return;
     setSending(true);
 
     // ── Step 1: Upload image (isolated — upload.js shows its own error toast) ──
