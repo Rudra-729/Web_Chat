@@ -6,6 +6,7 @@ export const useChatStore = create((set) => ({
   user: null,
   isCurrentUserBlocked: false,
   isReceiverBlocked: false,
+  isMuted: false,
   // mobile panel: 'list' | 'chat' | 'detail'
   mobilePanel: "list",
 
@@ -18,6 +19,7 @@ export const useChatStore = create((set) => ({
         user: null,
         isCurrentUserBlocked: true,
         isReceiverBlocked: false,
+        isMuted: false,
         mobilePanel: "chat",
       });
     } else if (currentUser.blocked.includes(user.id)) {
@@ -26,6 +28,7 @@ export const useChatStore = create((set) => ({
         user,
         isCurrentUserBlocked: false,
         isReceiverBlocked: true,
+        isMuted: false,
         mobilePanel: "chat",
       });
     } else {
@@ -34,6 +37,7 @@ export const useChatStore = create((set) => ({
         user,
         isCurrentUserBlocked: false,
         isReceiverBlocked: false,
+        isMuted: false,
         mobilePanel: "chat",
       });
     }
@@ -43,12 +47,17 @@ export const useChatStore = create((set) => ({
     set((state) => ({ ...state, isReceiverBlocked: !state.isReceiverBlocked }));
   },
 
+  changeMute: () => {
+    set((state) => ({ ...state, isMuted: !state.isMuted }));
+  },
+
   resetChat: () => {
     set({
       chatId: null,
       user: null,
       isCurrentUserBlocked: false,
       isReceiverBlocked: false,
+      isMuted: false,
       mobilePanel: "list",
     });
   },

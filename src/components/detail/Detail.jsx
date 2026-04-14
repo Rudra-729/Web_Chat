@@ -9,13 +9,12 @@ import CallOverlay from "../call/CallOverlay";
 
 const Detail = () => {
   const {
-    chatId, user, isCurrentUserBlocked, isReceiverBlocked,
-    changeBlock, resetChat, setMobilePanel,
+    chatId, user, isCurrentUserBlocked, isReceiverBlocked, isMuted,
+    changeBlock, changeMute, resetChat, setMobilePanel,
   } = useChatStore();
   const { currentUser } = useUserStore();
 
   const [sections, setSections] = useState({ photos: false, settings: false });
-  const [muted, setMuted] = useState(false);
   const [callType, setCallType] = useState(null); // null | 'voice' | 'video'
 
   const toggleSection = (key) =>
@@ -42,8 +41,8 @@ const Detail = () => {
   };
 
   const handleMute = () => {
-    setMuted((m) => !m);
-    toast.info(muted ? "🔔 Notifications unmuted" : "🔕 Conversation muted");
+    changeMute();
+    toast.info(isMuted ? "🔔 Notifications unmuted" : "🔕 Conversation muted");
   };
 
   if (!user) {
@@ -86,11 +85,11 @@ const Detail = () => {
             📹<span>Video</span>
           </button>
           <button
-            className={`actionBtn ${muted ? "mutedActive" : ""}`}
-            title={muted ? "Unmute" : "Mute"}
+            className={`actionBtn ${isMuted ? "mutedActive" : ""}`}
+            title={isMuted ? "Unmute" : "Mute"}
             onClick={handleMute}
           >
-            {muted ? "🔕" : "🔔"}<span>{muted ? "Unmute" : "Mute"}</span>
+            {isMuted ? "🔕" : "🔔"}<span>{isMuted ? "Unmute" : "Mute"}</span>
           </button>
         </div>
       </div>
@@ -127,10 +126,10 @@ const Detail = () => {
               <div className="settingRow">
                 <span>🔔 Notifications</span>
                 <button
-                  className={`miniToggle ${muted ? "" : "on"}`}
+                  className={`miniToggle ${isMuted ? "" : "on"}`}
                   onClick={handleMute}
                 >
-                  {muted ? "Off" : "On"}
+                  {isMuted ? "Off" : "On"}
                 </button>
               </div>
               <div className="settingRow">

@@ -41,7 +41,7 @@ const Chat = () => {
   const canvasRef = useRef(null);
 
   const { currentUser } = useUserStore();
-  const { chatId, user, isCurrentUserBlocked, isReceiverBlocked, setMobilePanel } =
+  const { chatId, user, isCurrentUserBlocked, isReceiverBlocked, isMuted, changeMute, setMobilePanel } =
     useChatStore();
 
   const endRef = useRef(null);
@@ -396,11 +396,12 @@ const Chat = () => {
                 <button
                   className="moreItem"
                   onClick={() => {
-                    toast.info("🔔 Conversation muted");
+                    changeMute();
+                    toast.info(isMuted ? "🔔 Notifications unmuted" : "🔕 Conversation muted");
                     setMoreOpen(false);
                   }}
                 >
-                  <span>🔔</span> Mute Conversation
+                  <span>{isMuted ? "🔔" : "🔕"}</span> {isMuted ? "Unmute Conversation" : "Mute Conversation"}
                 </button>
                 <div className="moreMenuDivider" />
                 <button
