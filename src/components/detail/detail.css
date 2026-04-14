@@ -35,6 +35,13 @@
   color: var(--text-primary);
 }
 
+/* Tablet: show detail as overlay */
+@media (max-width: 1024px) {
+  .detail {
+    max-width: 280px;
+  }
+}
+
 @media (max-width: 768px) {
   .detail {
     max-width: 100%;
@@ -352,11 +359,4 @@
 .detail .actionButtons .logoutBtn:hover {
   background: var(--bg-glass-hover);
   color: var(--text-primary);
-}
-
-/* Tablet: show detail as overlay */
-@media (max-width: 1024px) {
-  .detail {
-    max-width: 280px;
-  }
 }
