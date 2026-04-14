@@ -40,6 +40,7 @@
   .detail {
     max-width: 280px;
   }
+  .detailMobileBack { display: block; }
 }
 
 @media (max-width: 768px) {
@@ -47,7 +48,6 @@
     max-width: 100%;
     min-width: unset;
   }
-  .detailMobileBack { display: block; }
 }
 
 /* Empty detail state */

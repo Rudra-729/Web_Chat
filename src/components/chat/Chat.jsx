@@ -329,7 +329,12 @@ const Chat = () => {
           ‹
         </button>
 
-        <div className="user">
+        <div 
+          className="user" 
+          onClick={() => setMobilePanel("detail")} 
+          style={{ cursor: "pointer" }} 
+          title="View Profile"
+        >
           <div className="avatarWrapper">
             <img src={isCurrentUserBlocked ? "./avatar.png" : (user?.avatar || "./avatar.png")} alt="" />
             <div className="onlineDot" />

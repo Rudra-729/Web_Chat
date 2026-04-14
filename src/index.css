@@ -87,6 +87,18 @@ body {
   .container > .detail {
     display: none;
   }
+
+  /* Show detail as an absolute slide-out if mobilePanel active */
+  .container.mobilePanelActive--detail > .detail {
+    display: flex;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 100;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.4);
+    animation: slideInRight 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
 }
 
 /* ─── MOBILE (≤ 768px): single-panel sliding layout ─── */
