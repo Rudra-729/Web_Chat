@@ -12,7 +12,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 480px;
+  width: 90vw;
+  max-width: 480px;
   max-height: 80vh;
   background: rgba(10, 15, 32, 0.98);
   backdrop-filter: blur(40px);
@@ -29,6 +30,13 @@
 @keyframes settingsSlideIn {
   from { opacity: 0; transform: translate(-50%, -48%) scale(0.97); }
   to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+@media (max-width: 480px) {
+  .settingsModal .settingsHeader { padding: 18px 16px 14px; }
+  .settingsModal .settingsBody { padding: 16px 16px; }
+  .settingsModal .settingsTabs { padding: 8px 10px 0; }
+  .settingsModal .settingsFooter { padding: 12px 16px 16px; }
 }
 
 /* ── Header ── */

@@ -165,12 +165,16 @@ body {
   animation: spin 0.8s linear infinite;
 }
 
-/* ─── Custom scrollbar ─── */
+/* ─── Custom scrollbar & Touch Optimization ─── */
 ::-webkit-scrollbar { width: 4px; height: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: rgba(99,102,241,0.3); border-radius: 999px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(99,102,241,0.55); }
-* { scrollbar-width: thin; scrollbar-color: rgba(99,102,241,0.3) transparent; }
+* { 
+  scrollbar-width: thin; 
+  scrollbar-color: rgba(99,102,241,0.3) transparent; 
+  -webkit-overflow-scrolling: touch;
+}
 
 /* ─── Keyframes ─── */
 @keyframes containerIn {
