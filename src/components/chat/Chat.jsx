@@ -122,6 +122,46 @@ const Chat = () => {
     if (fileRef.current) fileRef.current.value = "";
   };
 
+  const handleClearChat = async () => {
+    if (!window.confirm("Are you sure you want to clear this chat? This will remove all messages for everyone and cannot be undone.")) return;
+    
+    try {
+      // 1. Clear the messages array in the chats collection
+      await updateDoc(doc(db, "chats", chatId), {
+        messages: []
+      });
+
+      // 2. Update the lastMessage in both users' userchats collection
+      const ts = Date.now();
+      const userIDs = [currentUser.id, user.id];
+      Promise.all(userIDs.map(async (id) => {
+        try {
+          const ref = doc(db, "userchats", id);
+          const snap = await getDoc(ref);
+          if (snap.exists()) {
+            const data = snap.data();
+            const idx = data.chats.findIndex((c) => c.chatId === chatId);
+            if (idx >= 0) {
+              data.chats[idx].lastMessage = "Chat cleared";
+              data.chats[idx].isSeen = id === currentUser.id;
+              data.chats[idx].updatedAt = ts;
+              await updateDoc(ref, { chats: data.chats });
+            }
+          }
+        } catch (e) {
+          console.warn("userchats sync (clear):", id, e.message);
+        }
+      }));
+
+      toast.success("Chat cleared successfully.");
+    } catch (err) {
+      console.error("Failed to clear chat:", err);
+      toast.error("Failed to clear chat. Please try again.");
+    } finally {
+      setMoreOpen(false);
+    }
+  };
+
   const handleSend = useCallback(async () => {
     if (text.trim() === "" && !img.file) return;
     if (sending) return;
@@ -426,10 +466,7 @@ const Chat = () => {
                 <div className="moreMenuDivider" />
                 <button
                   className="moreItem danger"
-                  onClick={() => {
-                    toast.warn("Clear chat coming soon.");
-                    setMoreOpen(false);
-                  }}
+                  onClick={handleClearChat}
                 >
                   <span>🗑️</span> Clear Chat
                 </button>
