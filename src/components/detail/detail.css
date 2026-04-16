@@ -5,7 +5,7 @@
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-  background: rgba(8,12,28,0.4);
+  background: var(--bg-panel-alt);
 }
 
 /* Mobile back (shown only on mobile) */
@@ -79,7 +79,7 @@
   align-items: center;
   gap: 10px;
   border-bottom: 1px solid var(--border-color);
-  background: rgba(10,15,30,0.3);
+  background: var(--bg-profile-section);
   flex-shrink: 0;
 }
 
@@ -92,9 +92,9 @@
   height: 76px;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid rgba(99,102,241,0.4);
+  border: 3px solid var(--border-accent);
   display: block;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
 }
 
 .detail .profileSection .avatarLarge .onlineDot {
@@ -105,7 +105,7 @@
   position: absolute;
   bottom: 2px;
   right: 2px;
-  border: 3px solid #0a0f1e;
+  border: 3px solid var(--border-online-dot);
 }
 
 .detail .profileSection h2 {
@@ -155,7 +155,7 @@
 
 .detail .profileSection .quickActions .actionBtn:hover {
   background: var(--bg-glass-hover);
-  border-color: rgba(255,255,255,0.15);
+  border-color: var(--border-color);
   transform: translateY(-2px);
 }
 
@@ -258,7 +258,7 @@
 }
 
 .detail .infoSection .photoGrid .photoItem:hover img { transform: scale(1.08); }
-.detail .infoSection .photoGrid .photoItem:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
+.detail .infoSection .photoGrid .photoItem:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
 
 .detail .infoSection .morePhotos {
   font-size: 12px;

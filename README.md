@@ -1,4 +1,4 @@
-# 🚀 ReactChat - Real-Time Chat Application
+npm# 🚀 ReactChat - Real-Time Chat Application
 
 A modern, fully-featured real-time chat application built with React, Firebase, and Vite.
 

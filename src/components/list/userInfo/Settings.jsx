@@ -4,6 +4,7 @@ import "./Settings.css";
 import { useUserStore } from "../../../lib/userStore";
 import { auth } from "../../../lib/firebase";
 import { useChatStore } from "../../../lib/chatStore";
+import { useThemeStore } from "../../../lib/themeStore";
 import { toast } from "react-toastify";
 
 const TABS = ["Profile", "Notifications", "Privacy", "Appearance"];
@@ -11,6 +12,7 @@ const TABS = ["Profile", "Notifications", "Privacy", "Appearance"];
 const Settings = ({ onClose }) => {
   const { currentUser } = useUserStore();
   const { resetChat } = useChatStore();
+  const { theme, setTheme } = useThemeStore();
   const [activeTab, setActiveTab] = useState("Profile");
 
   // Appearance state
@@ -335,6 +337,33 @@ const Settings = ({ onClose }) => {
           {/* ── APPEARANCE TAB ── */}
           {activeTab === "Appearance" && (
             <>
+              {/* Theme Switcher */}
+              <div className="sSection">
+                <div className="sSectionLabel">Theme</div>
+                <div className="sCard">
+                  <div className="sRow" style={{ padding: "16px" }}>
+                    <div className="themeSwitch">
+                      <button
+                        className={`themeOption ${theme === "dark" ? "active" : ""}`}
+                        onClick={() => setTheme("dark")}
+                      >
+                        <div className="themePreview dark" />
+                        <span className="themeName">🌙 Dark</span>
+                        <span className="themeCheck">✓</span>
+                      </button>
+                      <button
+                        className={`themeOption ${theme === "light" ? "active" : ""}`}
+                        onClick={() => setTheme("light")}
+                      >
+                        <div className="themePreview light" />
+                        <span className="themeName">☀️ Light</span>
+                        <span className="themeCheck">✓</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <div className="sSection">
                 <div className="sSectionLabel">Chat</div>
                 <div className="sCard">

@@ -40,7 +40,7 @@
 }
 
 .chatList .search .searchBar:focus-within {
-  background: rgba(99,102,241,0.06);
+  background: var(--bg-input-focus);
   border-color: rgba(99,102,241,0.4);
   box-shadow: 0 0 0 2px rgba(99,102,241,0.08);
 }
@@ -162,7 +162,7 @@
 
 .chatList .item.active .avatarWrapper img,
 .chatList .item:hover .avatarWrapper img {
-  border-color: rgba(99,102,241,0.4);
+  border-color: var(--border-accent);
 }
 
 .chatList .item .avatarWrapper .onlineDot {
@@ -173,7 +173,7 @@
   position: absolute;
   bottom: 1px;
   right: 1px;
-  border: 2px solid #0a0f1e;
+  border: 2px solid var(--border-online-dot);
 }
 
 .chatList .item .texts {
@@ -247,11 +247,11 @@
 
 /* ── Bot / AI specific styles ── */
 .chatList .item.botItem {
-  background: linear-gradient(90deg, rgba(99,102,241,0.05) 0%, transparent 100%);
+  background: var(--bot-item-bg);
 }
 
 .chatList .item.botItem:hover {
-  background: linear-gradient(90deg, rgba(99,102,241,0.1) 0%, transparent 100%);
+  background: var(--bot-item-hover-bg);
 }
 
 .chatList .item .avatarWrapper .botBadge {
@@ -262,7 +262,7 @@
   height: 18px;
   background: #6366f1;
   border-radius: 50%;
-  border: 2px solid #0a0f1e;
+  border: 2px solid var(--bot-badge-border);
   font-size: 9px;
   display: flex;
   align-items: center;

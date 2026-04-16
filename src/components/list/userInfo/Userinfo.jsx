@@ -3,11 +3,13 @@ import "./userInfo.css";
 import { useUserStore } from "../../../lib/userStore";
 import { auth } from "../../../lib/firebase";
 import { useChatStore } from "../../../lib/chatStore";
+import { useThemeStore } from "../../../lib/themeStore";
 import Settings from "./Settings";
 
 const Userinfo = () => {
   const { currentUser } = useUserStore();
   const { resetChat } = useChatStore();
+  const { theme, toggleTheme } = useThemeStore();
   const [settingsOpen, setSettingsOpen] = useState(false);
 
   const handleLogout = () => {
@@ -29,6 +31,13 @@ const Userinfo = () => {
           </div>
         </div>
         <div className="icons">
+          <button
+            className="iconBtn themeToggle"
+            title={theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}
+            onClick={toggleTheme}
+          >
+            {theme === "dark" ? "☀️" : "🌙"}
+          </button>
           <button
             className="iconBtn"
             title="Settings"
