@@ -8,25 +8,27 @@ A modern, fully-featured real-time chat application built with React, Firebase, 
 
 ## ✨ Features
 
-### Authentication
-- 🔐 **Email/Password Authentication** - Traditional sign-up and sign-in with Firebase Auth
-- 🔑 **Google OAuth Integration** - One-click sign-in with Google accounts
+### ✨ AI Integration
+- 🤖 **AI Assistant** - Integrated with Gemini 1.5 Flash API for context-aware conversations
+- ⚡ **Auto-Provisioned Bots** - Every user automatically has an AI chat companion
+
+### 🔐 Authentication
+- 🔐 **Email/Password & Google OAuth** - Flexible sign-in options via Firebase Auth
 - ✅ **Unique Username Validation** - Prevents duplicate usernames across the platform
 
-### Chat Functionality
+### 💬 Chat Functionality
 - 💬 **Real-Time Messaging** - Instant message delivery with Firestore
 - 🖼️ **Image Sharing** - Upload and share images through Cloudinary CDN
+- 🧹 **Clear Chat** - Easily clear your message history for any specific conversation
 - 😊 **Emoji Support** - Add emojis to your messages with emoji-picker-react
-- ⏰ **Message Timestamps** - Relative timestamps (e.g., "5 minutes ago") using timeago.js
-- 🔍 **User Search** - Search for users by username to start conversations
-- 🚫 **Block Users** - Block specific users from messaging you
+- ⏰ **Message Timestamps** - Relative timestamps utilizing timeago.js
+- 🔍 **User Search & Blocking** - Search for users, start conversations, or block them
 
-### User Interface
-- 🎨 **Glassmorphism Design** - Modern blur glass effects for a sleek appearance
-- 📱 **Responsive Layout** - Works seamlessly on desktop and mobile devices
-- ⌨️ **Real-Time Search** - Search through your chats and contacts instantly
-- 🌟 **Smooth Animations** - Polished transitions and animations throughout the app
-- 💾 **User Profiles** - Display user information with uploaded avatars
+### 🎨 User Interface
+- 🌗 **Light/Dark Themes** - Professional and sleek design with dynamic theme switching
+- 📱 **Mobile Optimized** - Full responsiveness, touch-based navigation, and accessible panels (e.g., tap profile for details)
+- 🎨 **Glassmorphism Aesthetics** - Modern blur glass effects and smooth micro-animations
+- 💾 **Rich Profiles** - Display and manage user information with uploaded avatars
 
 ---
 
@@ -39,10 +41,8 @@ A modern, fully-featured real-time chat application built with React, Firebase, 
 
 ### Backend & Services
 - **Firebase 9+**
-  - Authentication (Email/Password & Google OAuth)
-  - Firestore Database
-  - Firebase Storage (optional)
-  - Analytics
+  - Authentication, Firestore Database, and real-time syncing
+- **Google AI** - Integration with the Gemini 1.5 Flash API
 
 ### APIs & Libraries
 - **Cloudinary** - Cloud image storage and CDN
@@ -50,6 +50,7 @@ A modern, fully-featured real-time chat application built with React, Firebase, 
 - **React Toastify** - Toast notifications
 - **emoji-picker-react** - Emoji selection component
 - **timeago.js** - Relative time formatting
+- **@google/genai** - Intelligent conversational API integration
 
 ---
 
@@ -81,11 +82,13 @@ A modern, fully-featured real-time chat application built with React, Firebase, 
    VITE_API_KEY=your_firebase_api_key
    VITE_CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
    VITE_CLOUDINARY_UPLOAD_PRESET=your_upload_preset
+   VITE_GEMINI_API_KEY=your_gemini_api_key
    ```
 
    Find these values:
    - **Firebase API Key**: Firebase Console → Project Settings → Web App Config
    - **Cloudinary Details**: Cloudinary Dashboard → Settings → API Keys
+   - **Gemini API Key**: Google Cloud Console or Google AI Studio
 
 4. **Start development server**
    ```bash
